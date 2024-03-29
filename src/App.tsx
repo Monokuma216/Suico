@@ -1,9 +1,11 @@
 import React from 'react';
+import Canvas from './components/canvas/canvas';
+import styles from './index.module.sass';
 
 function App() {
   return (
-    <div>
-      <h1>Hello, World!</h1>
+    <div className={styles.main}>
+      <Canvas width={500} height={500} />
     </div>
   );
 }
