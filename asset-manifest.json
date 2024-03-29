@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.e6c13ad2.css",
-    "main.js": "/static/js/main.19b846af.js",
-    "index.html": "/index.html",
-    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
-    "main.19b846af.js.map": "/static/js/main.19b846af.js.map"
+    "main.css": "//monokuma216.github.io/Suico/static/css/main.e6c13ad2.css",
+    "main.js": "//monokuma216.github.io/Suico/static/js/main.19b846af.js",
+    "index.html": "//monokuma216.github.io/Suico/index.html",
+    "main.e6c13ad2.css.map": "//monokuma216.github.io/Suico/static/css/main.e6c13ad2.css.map",
+    "main.19b846af.js.map": "//monokuma216.github.io/Suico/static/js/main.19b846af.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
