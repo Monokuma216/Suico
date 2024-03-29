@@ -7,13 +7,20 @@
 		"standard-with-typescript",
 		"plugin:react/recommended"
 	],
+	"parser": "babel-eslint", // Парсер для обработки jsx кода
 	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
 	"plugins": [
-		"react"
+		"react",
+		"prettier"
 	],
 	"rules": {
+		"prettier/prettier": "error", // Обязательно!! Подсвечивает ошибки из Prettier.
+		"react/prop-types": 0 // Отключаем правило проверки передаваемых типов.
 	}
 }
