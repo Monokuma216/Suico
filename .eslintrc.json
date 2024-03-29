@@ -5,15 +5,15 @@
 	},
 	"extends": [
 		"standard-with-typescript",
-		"plugin:react/recommended"
+		"plugin:react/recommended",
+		"plugin:import/typescript",
+		"plugin:prettier/recommended"
 	],
-	"parser": "babel-eslint", // Парсер для обработки jsx кода
+	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"ecmaFeatures": {
-			"jsx": true
-		},
 		"ecmaVersion": "latest",
-		"sourceType": "module"
+		"sourceType": "module",
+		"project": "./tsconfig.json"
 	},
 	"plugins": [
 		"react",
@@ -21,6 +21,7 @@
 	],
 	"rules": {
 		"prettier/prettier": "error", // Обязательно!! Подсвечивает ошибки из Prettier.
-		"react/prop-types": 0 // Отключаем правило проверки передаваемых типов.
+		"react/prop-types": 0, // Отключаем правило проверки передаваемых типов.
+		"@typescript-eslint/explicit-function-return-type": 0
 	}
 }
