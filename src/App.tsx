@@ -1,11 +1,15 @@
 import React from 'react';
-import Canvas from './components/canvas/canvas';
+import { MainScene } from './babylon/scenes/MainScene';
+import { Game } from './feature/game/Game';
 import styles from './index.module.sass';
 
 function App() {
   return (
     <div className={styles.main}>
-      <Canvas width={500} height={500} />
+      <Game
+        onSceneReady={MainScene}
+        adaptToDeviceRatio={false}
+      />
     </div>
   );
 }

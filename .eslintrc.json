@@ -6,8 +6,7 @@
 	"extends": [
 		"standard-with-typescript",
 		"plugin:react/recommended",
-		"plugin:import/typescript",
-		"plugin:prettier/recommended"
+		"plugin:import/typescript"
 	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
@@ -16,12 +15,38 @@
 		"project": "./tsconfig.json"
 	},
 	"plugins": [
-		"react",
-		"prettier"
+		"react"
 	],
 	"rules": {
-		"prettier/prettier": "error", // Обязательно!! Подсвечивает ошибки из Prettier.
-		"react/prop-types": 0, // Отключаем правило проверки передаваемых типов.
-		"@typescript-eslint/explicit-function-return-type": 0
+		"@typescript-eslint/explicit-function-return-type": 0,
+		"@typescript-eslint/member-delimiter-style": [
+			"error", {
+				"multiline": {
+					"delimiter": "semi", // 'none' or 'semi' or 'comma'
+					"requireLast": true
+				},
+				"singleline": {
+					"delimiter": "semi", // 'semi' or 'comma'
+					"requireLast": false
+				}
+			}
+		],
+		"@typescript-eslint/space-before-function-paren": ["error", {"anonymous": "always", "named": "never"}],
+		"react/prop-types": 0,
+		"react/jsx-wrap-multilines": [
+			"error", {
+				"declaration": "parens-new-line",
+				"assignment": "parens-new-line",
+				"return": "parens-new-line",
+				"arrow": "parens-new-line",
+				"condition": "parens-new-line",
+				"logical": "parens-new-line"
+			}
+		],
+		"react/react-in-jsx-scope": 0,
+		"semi": ["error", "always"],
+		"@typescript-eslint/semi": ["error", "always"],
+		"comma-dangle": ["error", "only-multiline"],
+		"max-len": ["warn", {"code": 150, "tabWidth": 4}]
 	}
 }
