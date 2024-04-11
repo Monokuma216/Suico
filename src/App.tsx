@@ -4,6 +4,8 @@ import { Game } from './feature/game/Game';
 import styles from './index.module.sass';
 
 function App() {
+  console.log('render');
+
   return (
     <div className={styles.main}>
       <Game

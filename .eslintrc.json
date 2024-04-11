@@ -32,6 +32,8 @@
 			}
 		],
 		"@typescript-eslint/space-before-function-paren": ["error", {"anonymous": "always", "named": "never"}],
+		"@typescript-eslint/comma-dangle": ["error", "always-multiline"],
+		"@typescript-eslint/strict-boolean-expressions": ["error", {"allowNullableBoolean": true, "allowNullableNumber": true}],
 		"react/prop-types": 0,
 		"react/jsx-wrap-multilines": [
 			"error", {
@@ -46,7 +48,8 @@
 		"react/react-in-jsx-scope": 0,
 		"semi": ["error", "always"],
 		"@typescript-eslint/semi": ["error", "always"],
-		"comma-dangle": ["error", "only-multiline"],
-		"max-len": ["warn", {"code": 150, "tabWidth": 4}]
+		"comma-dangle": ["error", "always-multiline"],
+		"max-len": ["warn", {"code": 150, "tabWidth": 4}],
+		"no-new": 0
 	}
 }
