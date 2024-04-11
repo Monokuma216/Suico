@@ -34,10 +34,6 @@ export class Fruit {
       pointB: new Vector3(0, 0, 0.5),
     });
     this.physicsAggregate.body.setCollisionCallbackEnabled(true);
-    this.physicsAggregate.body.setLinearDamping(0.5);
-
-    const vel = this.physicsAggregate.body.getLinearVelocity();
-    this.physicsAggregate.body.setAngularVelocity(new Vector3(0, 0, 0));
 
     return disc;
   }

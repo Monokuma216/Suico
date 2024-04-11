@@ -1,5 +1,5 @@
 import { MeshBuilder, PointerEventTypes, type Scene, Vector3 } from '@babylonjs/core';
-import { Fruits } from '../models/fruits';
+import { fruitsUtility } from '../utils/fruits';
 
 export class Spawner {
   scene: Scene;
@@ -16,7 +16,7 @@ export class Spawner {
         isMouseDown = true;
       } else if (eventData.type === PointerEventTypes.POINTERUP) {
         isMouseDown = false;
-        Fruits.create('apple', new Vector3(disc.position.x, 20, 0));
+        fruitsUtility.create('apple', new Vector3(disc.position.x, 20, 0));
       }
 
       if (!isMouseDown) return;

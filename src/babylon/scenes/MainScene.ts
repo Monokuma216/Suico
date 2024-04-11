@@ -2,7 +2,7 @@ import { Color4, type Scene, Vector3 } from '@babylonjs/core';
 import logger from '../../loggers/index';
 import { Spawner } from '../managers/spawner';
 import { type Fruit } from '../models/fruit';
-import { Fruits } from '../models/fruits';
+import { fruitsUtility } from '../utils/fruits';
 import { merging } from '../utils/merging';
 import '@babylonjs/core/Debug/debugLayer';
 import '@babylonjs/inspector';
@@ -44,7 +44,7 @@ export const MainScene = async (scene: Scene) => {
   });
 
   scene.onBeforeRenderObservable.add(() => {
-    for (const fruit of Fruits.createdFruits) {
+    for (const fruit of fruitsUtility.createdFruits) {
       if (fruit.physicsAggregate.body.isDisposed) continue;
       fruit.physicsAggregate.body.setAngularVelocity(new Vector3(0, 0, 0));
       const vel = fruit.physicsAggregate.body.getLinearVelocity();
