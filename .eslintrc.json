@@ -49,7 +49,7 @@
 		"semi": ["error", "always"],
 		"@typescript-eslint/semi": ["error", "always"],
 		"comma-dangle": ["error", "always-multiline"],
-		"max-len": ["warn", {"code": 150, "tabWidth": 4, "ignorePattern": true}],
+		"max-len": ["warn", {"code": 150, "tabWidth": 4, "ignorePattern": "import*"}],
 		"no-new": 0
 	}
 }
