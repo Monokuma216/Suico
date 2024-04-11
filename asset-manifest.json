@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "//monokuma216.github.io/Suico/static/css/main.e6c13ad2.css",
-    "main.js": "//monokuma216.github.io/Suico/static/js/main.19b846af.js",
-    "index.html": "//monokuma216.github.io/Suico/index.html",
-    "main.e6c13ad2.css.map": "//monokuma216.github.io/Suico/static/css/main.e6c13ad2.css.map",
-    "main.19b846af.js.map": "//monokuma216.github.io/Suico/static/js/main.19b846af.js.map"
+    "main.css": "/static/css/main.2db02d1c.css",
+    "main.js": "/static/js/main.300461e0.js",
+    "static/media/HavokPhysics.wasm": "/static/media/HavokPhysics.a2e1ec58b9284819a0f5.wasm",
+    "index.html": "/index.html",
+    "main.2db02d1c.css.map": "/static/css/main.2db02d1c.css.map",
+    "main.300461e0.js.map": "/static/js/main.300461e0.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.19b846af.js"
+    "static/css/main.2db02d1c.css",
+    "static/js/main.300461e0.js"
   ]
 }
