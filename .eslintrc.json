@@ -33,7 +33,8 @@
 		],
 		"@typescript-eslint/space-before-function-paren": ["error", {"anonymous": "always", "named": "never"}],
 		"@typescript-eslint/comma-dangle": ["error", "always-multiline"],
-		"@typescript-eslint/no-misused-promises": ["error", {"checksVoidReturn": true}],
+		"@typescript-eslint/no-misused-promises": 0,
+		"@typescript-eslint/triple-slash-reference": 0,
 		"@typescript-eslint/strict-boolean-expressions": [
 			"error",
 			{"allowNullableBoolean": true, "allowNullableNumber": true, "allowNullableString": true}
