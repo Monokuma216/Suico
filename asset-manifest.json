@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Monokuma216/Suico/static/css/main.2db02d1c.css",
-    "main.js": "/Monokuma216/Suico/static/js/main.60e6ce14.js",
-    "static/media/HavokPhysics.wasm": "/Monokuma216/Suico/static/media/HavokPhysics.a2e1ec58b9284819a0f5.wasm",
-    "index.html": "/Monokuma216/Suico/index.html",
-    "main.2db02d1c.css.map": "/Monokuma216/Suico/static/css/main.2db02d1c.css.map",
-    "main.60e6ce14.js.map": "/Monokuma216/Suico/static/js/main.60e6ce14.js.map"
+    "main.css": "/static/css/main.2db02d1c.css",
+    "main.js": "/static/js/main.300461e0.js",
+    "static/media/HavokPhysics.wasm": "/static/media/HavokPhysics.a2e1ec58b9284819a0f5.wasm",
+    "index.html": "/index.html",
+    "main.2db02d1c.css.map": "/static/css/main.2db02d1c.css.map",
+    "main.300461e0.js.map": "/static/js/main.300461e0.js.map"
   },
   "entrypoints": [
     "static/css/main.2db02d1c.css",
-    "static/js/main.60e6ce14.js"
+    "static/js/main.300461e0.js"
   ]
 }
