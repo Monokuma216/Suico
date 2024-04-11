@@ -1,23 +1,22 @@
-import { type AbstractMesh, FreeCamera, HavokPlugin, HemisphericLight, MeshBuilder, PhysicsAggregate, PhysicsShapeType, type Scene, StandardMaterial, Vector3 } from '@babylonjs/core';
+import { type AbstractMesh, ActionManager, FreeCamera, HavokPlugin, HemisphericLight, MeshBuilder, PhysicsAggregate, PhysicsShapeType, type Scene, Vector3 } from '@babylonjs/core';
 import HavokPhysics from '@babylonjs/havok';
+import { getInvisibleMaterial } from '../../utils/materials';
 
 export function createPlayArea(width: number, height: number) {
-  const ground = MeshBuilder.CreateGround('ground', { width, height: 6 });
+  const depth: number = 1.2;
+  const ground = MeshBuilder.CreateGround('ground', { width, height: depth });
   const walls: AbstractMesh[] = [];
-  const invisibleMaterial = new StandardMaterial('invisibleMaterial');
-  invisibleMaterial.alpha = 0;
 
   for (let i = 0; i < 2; i++) {
-    const wallHorizontal = MeshBuilder.CreateBox('wall', { width: 0.1, depth: 6, height });
+    const wallHorizontal = MeshBuilder.CreateBox('wall', { width: 0.1, depth, height });
     wallHorizontal.position = new Vector3(i * width - width / 2, height / 2, 0);
-    const wallVertical = MeshBuilder.CreateBox('wall', { width: 6, depth: 0.1, height });
-    wallVertical.position = new Vector3(0, height / 2, i * 6 - 3);
-    // wallHorizontal.material = invisibleMaterial;
-    wallVertical.material = invisibleMaterial;
+    const wallVertical = MeshBuilder.CreateBox('wall', { width, depth: 0.1, height });
+    wallVertical.position = new Vector3(0, height / 2, i * depth - depth / 2);
+    wallVertical.material = getInvisibleMaterial();
     walls.push(wallHorizontal, wallVertical);
   }
 
-  new PhysicsAggregate(ground, PhysicsShapeType.BOX, { mass: 0, restitution: 0 });
+  new PhysicsAggregate(ground, PhysicsShapeType.BOX, { mass: 0, restitution: 0, friction: 0.1 });
   for (const wall of walls) {
     new PhysicsAggregate(wall, PhysicsShapeType.BOX, { mass: 0 });
   }
@@ -46,4 +45,12 @@ export async function createPhysics(scene: Scene, gravity = 10): Promise<HavokPl
   const havokPlugin = new HavokPlugin(true, havokInstance);
   scene.enablePhysics(new Vector3(0, -gravity, 0), havokPlugin);
   return havokPlugin;
+}
+
+export function createTriggerPlane(width: number, height: number): void {
+  const plane = MeshBuilder.CreatePlane('plane', { width, height });
+  plane.position.y = height / 2;
+  plane.isPickable = true;
+  plane.actionManager = new ActionManager();
+  plane.material = getInvisibleMaterial();
 }

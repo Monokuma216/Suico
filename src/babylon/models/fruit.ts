@@ -19,7 +19,7 @@ export class Fruit {
     material.diffuseColor = color;
     material.emissiveColor = color;
 
-    const disc = MeshBuilder.CreateDisc(this.name, { tessellation: 17 });
+    const disc = MeshBuilder.CreateDisc(this.name, { tessellation: 20 });
     disc.metadata = { name: this.name, size: this.size };
     disc.material = material;
     disc.position = position;
@@ -28,7 +28,8 @@ export class Fruit {
     this.mesh = disc;
     this.physicsAggregate = new PhysicsAggregate(disc, PhysicsShapeType.CYLINDER, {
       mass: this.size,
-      restitution: 0.3,
+      restitution: 0.5,
+      friction: 0.1,
       pointA: new Vector3(0, 0, -0.5),
       pointB: new Vector3(0, 0, 0.5),
     });

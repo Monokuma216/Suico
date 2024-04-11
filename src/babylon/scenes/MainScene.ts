@@ -1,22 +1,28 @@
-import { type Scene, Vector3 } from '@babylonjs/core';
+import { Color4, type Scene, Vector3 } from '@babylonjs/core';
 import logger from '../../loggers/index';
+import { Spawner } from '../managers/spawner';
 import { type Fruit } from '../models/fruit';
 import { Fruits } from '../models/fruits';
 import { merging } from '../utils/merging';
 import '@babylonjs/core/Debug/debugLayer';
 import '@babylonjs/inspector';
-import { createCamera, createLight, createPhysics, createPlayArea } from './enviroment';
+import { createCamera, createLight, createPhysics, createPlayArea, createTriggerPlane } from './enviroment';
 
 export const MainScene = async (scene: Scene) => {
+  scene.clearColor = new Color4(2 / 255, 92 / 255, 117 / 255, 1);
+
   createCamera(10, false);
   createLight();
   const havokPlugin = await createPhysics(scene);
-  createPlayArea(20, 20);
+
+  const width = 20;
+  const height = 20;
+  createPlayArea(width, height);
+  createTriggerPlane(width, height);
 
   await scene.debugLayer.show({ embedMode: true, overlay: true });
 
-  Fruits.create('apple', new Vector3(0, 2, 0));
-  Fruits.create('apple', new Vector3(0, 8, 0));
+  new Spawner(scene);
 
   const fruits: Fruit[] = [];
 
