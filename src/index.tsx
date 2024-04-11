@@ -8,5 +8,10 @@ void bridge.send('VKWebAppInit');
 
 const root = ReactDOM.createRoot(document.getElementById('root') as Element);
 
-root.render(<App />,
-);
+if (process.env.NODE_ENV === 'development') {
+  root.render(<App />);
+} else {
+  root.render(<React.StrictMode>
+    <App />
+  </React.StrictMode>);
+}

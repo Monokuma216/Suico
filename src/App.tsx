@@ -10,7 +10,7 @@ function App() {
     <div className={styles.main}>
       <Game
         onSceneReady={MainScene}
-        adaptToDeviceRatio={false}
+        adaptToDeviceRatio={true}
       />
     </div>
   );

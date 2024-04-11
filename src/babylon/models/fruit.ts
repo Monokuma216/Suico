@@ -1,5 +1,4 @@
 import { type Color3, MeshBuilder, PhysicsAggregate, PhysicsShapeType, StandardMaterial, type TransformNode, Vector3 } from '@babylonjs/core';
-import logger from '../../loggers';
 
 export class Fruit {
   name: string;
@@ -18,6 +17,7 @@ export class Fruit {
   create(color: Color3, position: Vector3) {
     const material = new StandardMaterial(`${this.name}Material`);
     material.diffuseColor = color;
+    material.emissiveColor = color;
 
     const disc = MeshBuilder.CreateDisc(this.name, { tessellation: 17 });
     disc.metadata = { name: this.name, size: this.size };
@@ -26,10 +26,18 @@ export class Fruit {
     disc.scaling = Vector3.One().scale(this.size);
 
     this.mesh = disc;
-    this.physicsAggregate = new PhysicsAggregate(disc, PhysicsShapeType.MESH, { mass: this.size, restitution: 0.3 });
+    this.physicsAggregate = new PhysicsAggregate(disc, PhysicsShapeType.CYLINDER, {
+      mass: this.size,
+      restitution: 0.3,
+      pointA: new Vector3(0, 0, -0.5),
+      pointB: new Vector3(0, 0, 0.5),
+    });
     this.physicsAggregate.body.setCollisionCallbackEnabled(true);
+    this.physicsAggregate.body.setLinearDamping(0.5);
 
-    logger.info({ msg: 'Фрукт создан', fruit: this.name, id: disc.uniqueId });
+    const vel = this.physicsAggregate.body.getLinearVelocity();
+    this.physicsAggregate.body.setAngularVelocity(new Vector3(0, 0, 0));
+
     return disc;
   }
 

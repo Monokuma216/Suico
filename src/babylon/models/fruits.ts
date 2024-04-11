@@ -19,6 +19,8 @@ export class Fruits {
     pineapple: { size: 12, color: new Color3(0.2, 0.5, 0.8) },
   };
 
+  public static createdFruits: Fruit[] = [];
+
   static create(name: keyof FruitsList, position: Vector3) {
     const fruit = Fruits.fruitsList[name];
     if (fruit === undefined) {
@@ -27,7 +29,9 @@ export class Fruits {
     }
 
     const { size, color } = fruit;
-    return new Fruit(name, size, color, position);
+    const newFruit = new Fruit(name, size, color, position);
+    Fruits.createdFruits.push(newFruit);
+    return newFruit;
   }
 
   static getNextFruit(name: keyof FruitsList) {
