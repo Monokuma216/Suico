@@ -1,9 +1,8 @@
-import { Color3, type Vector3 } from '@babylonjs/core';
-import logger from '../../loggers';
+import { Color3 } from '@babylonjs/core';
 import { type FruitsList } from '../interfaces';
 import { Fruit } from '../models/fruit';
 
-const fruitsList: FruitsList = {
+const fruits: FruitsList = {
   apple: { size: 1, color: new Color3(0.5, 0.93, 0.07), nextFruit: 'banana' },
   banana: { size: 2, color: new Color3(0.75, 0.75, 0), nextFruit: 'grapefruit' },
   grapefruit: { size: 3, color: new Color3(0.93, 0.5, 0.07), nextFruit: 'kiwi' },
@@ -18,25 +17,22 @@ const fruitsList: FruitsList = {
   pineapple: { size: 12, color: new Color3(0.25, 1, 0.25) },
 };
 
-const createdFruits: Fruit[] = [];
-
-function create(name: keyof FruitsList, position: Vector3) {
-  const fruit = fruitsList[name];
-  if (fruit === undefined) {
-    logger.warn('Попытка создать фрукт, которого нет в списке');
-    return;
-  }
-
-  const { size, color } = fruit;
-  const newFruit = new Fruit(name, size, color, position);
-  createdFruits.push(newFruit);
-  return newFruit;
+function create(name: keyof FruitsList) {
+  return new Fruit(name);
 }
 
 function getNextFruit(name: keyof FruitsList) {
-  return fruitsList[name].nextFruit;
+  return fruits[name].nextFruit;
+}
+
+function getFruitList() {
+  return Object.keys(fruits).map((key) => ({ name: key as keyof FruitsList, ...fruits[key as keyof FruitsList] }));
+}
+
+function getFruitByName(name: keyof FruitsList) {
+  return fruits[name];
 }
 
 export const fruitsUtility = {
-  fruitsList, createdFruits, create, getNextFruit,
+  fruits, create, getNextFruit, getFruitList, getFruitByName,
 };

@@ -1,8 +1,6 @@
 import { Color4, type Scene, Vector3 } from '@babylonjs/core';
 import logger from '../../loggers/index';
 import { Spawner } from '../managers/spawner';
-import { type Fruit } from '../models/fruit';
-import { fruitsUtility } from '../utils/fruits';
 import { merging } from '../utils/merging';
 import '@babylonjs/core/Debug/debugLayer';
 import '@babylonjs/inspector';
@@ -22,9 +20,7 @@ export const MainScene = async (scene: Scene) => {
 
   await scene.debugLayer.show({ embedMode: true, overlay: true });
 
-  new Spawner(scene);
-
-  const fruits: Fruit[] = [];
+  const spawner = new Spawner(scene);
 
   havokPlugin.onCollisionObservable.add((event) => {
     if (event.type === 'COLLISION_STARTED') {
@@ -35,7 +31,7 @@ export const MainScene = async (scene: Scene) => {
       if (colliderSize !== collidedAgainstSize) { return; }
       logger.info({ collider: event.collider, collidedAgainst: event.collidedAgainst });
       const newFruit = merging(event.collider.transformNode, event.collidedAgainst.transformNode);
-      if (newFruit) fruits.push(newFruit);
+      if (newFruit) spawner.spawnedFruits.push(newFruit);
       event.collider.transformNode.dispose();
       event.collidedAgainst.transformNode.dispose();
       event.collider.dispose();
@@ -44,7 +40,8 @@ export const MainScene = async (scene: Scene) => {
   });
 
   scene.onBeforeRenderObservable.add(() => {
-    for (const fruit of fruitsUtility.createdFruits) {
+    for (const fruit of spawner.spawnedFruits) {
+      if (!fruit.physicsAggregate) continue;
       if (fruit.physicsAggregate.body.isDisposed) continue;
       fruit.physicsAggregate.body.setAngularVelocity(new Vector3(0, 0, 0));
       const vel = fruit.physicsAggregate.body.getLinearVelocity();

@@ -10,5 +10,7 @@ export function merging(a: TransformNode, b: TransformNode) {
 
   const middlePosition = new Vector3((a.position.x + b.position.x) / 2, (a.position.y + b.position.y) / 2, (a.position.z + b.position.z) / 2);
 
-  return fruitsUtility.create(nextFruit, middlePosition);
+  const fruit = fruitsUtility.create(nextFruit);
+  fruit.createPhysics(middlePosition);
+  return fruit;
 }
