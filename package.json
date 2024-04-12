@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://monokuma216.github.io/Suico",
+  "homepage": ".",
   "dependencies": {
     "@babylonjs/core": "^7.2.0",
     "@babylonjs/gui": "^7.2.0",
@@ -21,6 +21,7 @@
     "pino": "^8.20.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
     "sass": "^1.72.0",
     "typescript": "*",
