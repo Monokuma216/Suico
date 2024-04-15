@@ -11,7 +11,7 @@ export const MainScene = async (scene: Scene) => {
 
   createCamera(10, false);
   createLight();
-  const havokPlugin = await createPhysics(scene);
+  const havokPlugin = await createPhysics(scene, 100);
 
   const width = 20;
   const height = 20;
