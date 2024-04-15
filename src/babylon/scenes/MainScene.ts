@@ -1,10 +1,14 @@
 import { Color4, type Scene, Vector3 } from '@babylonjs/core';
 import logger from '../../loggers/index';
 import { Spawner } from '../managers/spawner';
+import { mainSettings } from '../settings/main';
 import { merging } from '../utils/merging';
 import '@babylonjs/core/Debug/debugLayer';
 import '@babylonjs/inspector';
 import { createCamera, createLight, createPhysics, createPlayArea, createTriggerPlane } from './enviroment';
+
+const { WIDTH: width, HEIGHT: height } = mainSettings.environment.arena;
+const { WIDTH: widthTrigger, HEIGHT: heightTrigger } = mainSettings.environment.triggerPanel;
 
 export const MainScene = async (scene: Scene) => {
   scene.clearColor = new Color4(2 / 255, 92 / 255, 117 / 255, 1);
@@ -13,10 +17,8 @@ export const MainScene = async (scene: Scene) => {
   createLight();
   const havokPlugin = await createPhysics(scene, 100);
 
-  const width = 20;
-  const height = 20;
   createPlayArea(width, height);
-  createTriggerPlane(width, height);
+  createTriggerPlane(widthTrigger, heightTrigger);
 
   await scene.debugLayer.show({ embedMode: true, overlay: true });
 

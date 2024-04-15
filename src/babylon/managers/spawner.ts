@@ -1,7 +1,11 @@
 import { PointerEventTypes, type Scene, setAndStartTimer, Vector3 } from '@babylonjs/core';
 import { type FruitsList } from '../interfaces';
 import { type Fruit } from '../models/fruit';
+import { mainSettings } from '../settings/main';
 import { fruitsUtility } from '../utils/fruits';
+
+const { TOP_MARGIN: topMargin, HEIGHT: height } = mainSettings.environment.arena;
+const spawnHeight = height + topMargin;
 
 export class Spawner {
   scene: Scene;
@@ -13,7 +17,7 @@ export class Spawner {
 
   constructor(scene: Scene) {
     this.scene = scene;
-    const startPosition: Vector3 = new Vector3(0, 20, 0);
+    const startPosition: Vector3 = new Vector3(0, spawnHeight, 0);
     this.prepareNewFruit(startPosition);
 
     let isMouseDown = false;
@@ -23,7 +27,7 @@ export class Spawner {
       if (eventData.type === PointerEventTypes.POINTERTAP) {
         const position = this.curFruit.mesh?.position.clone();
         if (!position) return;
-        position.y = 20;
+        position.y = spawnHeight;
         position.z = 0;
         this.spawnFruit(this.curFruit);
         this.isReadySpawn = false;
